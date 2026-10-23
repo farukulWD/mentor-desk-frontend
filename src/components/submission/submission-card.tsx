@@ -10,11 +10,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { formatDate } from "@/lib/format";
+import {
+  EXTERNAL_LINK_CLASS,
+  formatDate,
+  formatLiveUrl,
+  formatRepo,
+} from "@/lib/format";
 import type { Submission } from "@/types";
-
-const LINK_CLASS =
-  "inline-flex min-w-0 items-center gap-1.5 text-muted-foreground underline-offset-4 hover:text-foreground hover:underline";
 
 export function SubmissionCard({ submission }: { submission: Submission }) {
   const {
@@ -44,23 +46,19 @@ export function SubmissionCard({ submission }: { submission: Submission }) {
             href={repoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={LINK_CLASS}
+            className={EXTERNAL_LINK_CLASS}
           >
             <IconBrandGithub className="size-4 shrink-0" />
-            <span className="truncate">
-              {repoUrl.replace(/^https:\/\/(www\.)?github\.com\//i, "")}
-            </span>
+            <span className="truncate">{formatRepo(repoUrl)}</span>
           </a>
           <a
             href={liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={LINK_CLASS}
+            className={EXTERNAL_LINK_CLASS}
           >
             <IconExternalLink className="size-4 shrink-0" />
-            <span className="truncate">
-              {liveUrl.replace(/^https?:\/\//i, "")}
-            </span>
+            <span className="truncate">{formatLiveUrl(liveUrl)}</span>
           </a>
         </div>
         <p className="line-clamp-3 whitespace-pre-line wrap-break-word">

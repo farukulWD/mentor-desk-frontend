@@ -8,7 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import type { SubmissionStatus } from "@/types";
 
-const STATUS_CONFIG: Record<
+export const STATUS_CONFIG: Record<
   SubmissionStatus,
   { label: string; icon: Icon; className: string }
 > = {
