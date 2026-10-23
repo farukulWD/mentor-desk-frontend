@@ -59,8 +59,14 @@ export function SubmissionFields({ control, idPrefix }: SubmissionFieldsProps) {
                 {...inputProps}
                 id={`${idPrefix}-${name}`}
                 aria-invalid={fieldState.invalid}
+                aria-describedby={
+                  fieldState.invalid ? `${idPrefix}-${name}-error` : undefined
+                }
               />
-              <FieldError errors={[fieldState.error]} />
+              <FieldError
+                id={`${idPrefix}-${name}-error`}
+                errors={[fieldState.error]}
+              />
             </Field>
           )}
         />
@@ -78,10 +84,21 @@ export function SubmissionFields({ control, idPrefix }: SubmissionFieldsProps) {
               maxLength={DESCRIPTION_MAX}
               placeholder="What does it do, and what should the mentor look at?"
               aria-invalid={fieldState.invalid}
+              aria-describedby={
+                fieldState.invalid
+                  ? `${idPrefix}-description-error ${idPrefix}-description-count`
+                  : `${idPrefix}-description-count`
+              }
             />
             <div className="flex items-start justify-between gap-2">
-              <FieldError errors={[fieldState.error]} />
-              <FieldDescription className="ml-auto shrink-0 tabular-nums">
+              <FieldError
+                id={`${idPrefix}-description-error`}
+                errors={[fieldState.error]}
+              />
+              <FieldDescription
+                id={`${idPrefix}-description-count`}
+                className="ml-auto shrink-0 tabular-nums"
+              >
                 {field.value.length} / {DESCRIPTION_MAX}
               </FieldDescription>
             </div>

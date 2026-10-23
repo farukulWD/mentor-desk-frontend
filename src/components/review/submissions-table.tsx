@@ -218,7 +218,7 @@ export function SubmissionsTable({
 
   return (
     <div className="rounded-xl ring-1 ring-foreground/10">
-      <Table>
+      <Table className="min-w-3xl">
         <TableHeader>
           <TableRow className="hover:bg-transparent">
             {COLUMNS.map((column) => (
@@ -235,7 +235,7 @@ export function SubmissionsTable({
         <TableBody
           aria-busy={isFetching}
           className={cn(
-            "transition-opacity",
+            "transition-opacity motion-reduce:transition-none",
             isFetching && !isLoading && "opacity-60",
           )}
         >

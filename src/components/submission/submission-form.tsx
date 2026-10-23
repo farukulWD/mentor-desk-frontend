@@ -62,7 +62,9 @@ export function SubmissionForm() {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle className="text-lg">Submit a project</CardTitle>
+        <CardTitle className="text-lg">
+          <h2>Submit a project</h2>
+        </CardTitle>
         <CardDescription>
           A mentor will review it and leave feedback.
         </CardDescription>

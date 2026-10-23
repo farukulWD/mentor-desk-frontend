@@ -55,7 +55,9 @@ export function LoginForm() {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
-        <CardTitle className="text-xl">Log in</CardTitle>
+        <CardTitle className="text-xl">
+          <h1>Log in</h1>
+        </CardTitle>
         <CardDescription>Welcome back to MentorDesk.</CardDescription>
       </CardHeader>
       <CardContent>
@@ -74,8 +76,14 @@ export function LoginForm() {
                     autoComplete="email"
                     placeholder="you@example.com"
                     aria-invalid={fieldState.invalid}
+                    aria-describedby={
+                      fieldState.invalid ? "login-email-error" : undefined
+                    }
                   />
-                  <FieldError errors={[fieldState.error]} />
+                  <FieldError
+                    id="login-email-error"
+                    errors={[fieldState.error]}
+                  />
                 </Field>
               )}
             />
@@ -91,8 +99,14 @@ export function LoginForm() {
                     type="password"
                     autoComplete="current-password"
                     aria-invalid={fieldState.invalid}
+                    aria-describedby={
+                      fieldState.invalid ? "login-password-error" : undefined
+                    }
                   />
-                  <FieldError errors={[fieldState.error]} />
+                  <FieldError
+                    id="login-password-error"
+                    errors={[fieldState.error]}
+                  />
                 </Field>
               )}
             />

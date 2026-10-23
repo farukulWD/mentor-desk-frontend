@@ -147,10 +147,21 @@ function ReviewForm({
                       : "Anything the student should know?"
                   }
                   aria-invalid={fieldState.invalid}
+                  aria-describedby={
+                    fieldState.invalid
+                      ? `${feedbackId}-error ${feedbackId}-count`
+                      : `${feedbackId}-count`
+                  }
                 />
                 <div className="flex items-start justify-between gap-2">
-                  <FieldError errors={[fieldState.error]} />
-                  <FieldDescription className="ml-auto shrink-0 tabular-nums">
+                  <FieldError
+                    id={`${feedbackId}-error`}
+                    errors={[fieldState.error]}
+                  />
+                  <FieldDescription
+                    id={`${feedbackId}-count`}
+                    className="ml-auto shrink-0 tabular-nums"
+                  >
                     {field.value.length} / {FEEDBACK_MAX}
                   </FieldDescription>
                 </div>
