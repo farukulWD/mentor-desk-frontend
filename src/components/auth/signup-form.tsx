@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
+import { FormAlert } from "@/components/form/form-alert";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -24,12 +25,10 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useCooldown } from "@/hooks/use-cooldown";
+import { handleFormError } from "@/lib/handle-form-error";
 import { homeFor } from "@/lib/routes";
 import { signupSchema, type SignupValues } from "@/lib/validations/auth";
 import { useSignupMutation } from "@/store/api/authApi";
-
-import { FormAlert } from "./form-alert";
-import { handleAuthError } from "./handle-auth-error";
 
 const FIELDS = ["name", "email", "password", "confirmPassword"] as const;
 
@@ -83,7 +82,7 @@ export function SignupForm() {
       toast.success("Account created");
       router.replace(homeFor(user.role));
     } catch (error) {
-      handleAuthError({
+      handleFormError({
         error,
         setError: form.setError,
         fields: FIELDS,
