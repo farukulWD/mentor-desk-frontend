@@ -63,7 +63,7 @@ App runs on http://localhost:3000. Start the backend first.
 
 - Students sign up at `/signup`.
 - There is no mentor signup. Use the seeded mentor from the backend `.env` (`SEED_MENTOR_EMAIL` / `SEED_MENTOR_PASSWORD`), by default `mentor@mentordesk.dev` / `Mentor12345`.
-- The backend seed also creates demo students `alice@mentordesk.dev` and `bob@mentordesk.dev` with password `Student123`.
+- Seeding the backend with `SEED_DEMO=true` also creates demo students `alice@mentordesk.dev` and `bob@mentordesk.dev` with password `Student123`.
 
 ## Project structure
 
