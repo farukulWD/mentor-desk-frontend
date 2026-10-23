@@ -8,19 +8,19 @@ import type { ApiError } from "@/types/api";
 
 const RATE_LIMIT_SECONDS = 60;
 
-type HandleAuthErrorOptions<T extends FieldValues> = {
+type HandleFormErrorOptions<T extends FieldValues> = {
   error: unknown;
   setError: UseFormSetError<T>;
   fields: readonly Path<T>[];
   startCooldown: (seconds: number) => void;
 };
 
-export const handleAuthError = <T extends FieldValues>({
+export const handleFormError = <T extends FieldValues>({
   error,
   setError,
   fields,
   startCooldown,
-}: HandleAuthErrorOptions<T>) => {
+}: HandleFormErrorOptions<T>) => {
   const { status, message, errors } = getApiError(
     error as ApiError | SerializedError,
   );

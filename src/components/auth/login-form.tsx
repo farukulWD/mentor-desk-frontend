@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
+import { FormAlert } from "@/components/form/form-alert";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -18,12 +19,10 @@ import {
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useCooldown } from "@/hooks/use-cooldown";
+import { handleFormError } from "@/lib/handle-form-error";
 import { homeFor } from "@/lib/routes";
 import { loginSchema, type LoginValues } from "@/lib/validations/auth";
 import { useLoginMutation } from "@/store/api/authApi";
-
-import { FormAlert } from "./form-alert";
-import { handleAuthError } from "./handle-auth-error";
 
 const FIELDS = ["email", "password"] as const;
 
@@ -44,7 +43,7 @@ export function LoginForm() {
       toast.success(`Welcome back, ${user.name}`);
       router.replace(homeFor(user.role));
     } catch (error) {
-      handleAuthError({
+      handleFormError({
         error,
         setError: form.setError,
         fields: FIELDS,
