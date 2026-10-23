@@ -1,3 +1,5 @@
+import type { Meta } from "./api";
+
 export type Role = "STUDENT" | "MENTOR";
 
 export type SubmissionStatus = "PENDING" | "APPROVED" | "REJECTED";
@@ -35,6 +37,18 @@ export type SubmissionStats = {
   pending: number;
   approved: number;
   rejected: number;
+};
+
+export type SubmissionListParams = {
+  status: StatusFilter;
+  page: number;
+  limit: number;
+  search: string;
+};
+
+export type Paginated<T> = {
+  items: T[];
+  meta: Meta;
 };
 
 export type AuthResponse = {
