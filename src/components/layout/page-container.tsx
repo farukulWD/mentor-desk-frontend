@@ -6,7 +6,9 @@ export function PageContainer({
 }: React.ComponentProps<"main">) {
   return (
     <main
-      className={cn("mx-auto w-full max-w-6xl flex-1 px-4 py-6", className)}
+      id="main"
+      tabIndex={-1}
+      className={cn("mx-auto w-full max-w-6xl flex-1 px-4 py-6 outline-none", className)}
       {...props}
     />
   );
@@ -18,8 +20,10 @@ export function AuthContainer({
 }: React.ComponentProps<"main">) {
   return (
     <main
+      id="main"
+      tabIndex={-1}
       className={cn(
-        "grid w-full flex-1 place-items-center px-4 py-10",
+        "grid w-full flex-1 place-items-center px-4 py-10 outline-none",
         className,
       )}
       {...props}

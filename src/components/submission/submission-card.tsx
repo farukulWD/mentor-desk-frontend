@@ -34,7 +34,7 @@ export function SubmissionCard({ submission }: { submission: Submission }) {
     <Card>
       <CardHeader>
         <CardTitle className="min-w-0 text-base wrap-break-word">
-          {projectName}
+          <h3>{projectName}</h3>
         </CardTitle>
         <CardAction>
           <StatusBadge status={status} />

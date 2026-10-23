@@ -66,7 +66,7 @@ export function SubmissionDetailsDialog({
         aria-label={`View details for ${projectName}`}
       >
         <IconEye data-icon="inline-start" />
-        View
+        <span className="sr-only sm:not-sr-only">View</span>
       </DialogTrigger>
       <DialogContent className="max-h-[calc(100dvh-2rem)] overflow-y-auto sm:max-w-lg">
         <DialogHeader>

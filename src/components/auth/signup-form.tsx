@@ -94,7 +94,9 @@ export function SignupForm() {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
-        <CardTitle className="text-xl">Create account</CardTitle>
+        <CardTitle className="text-xl">
+          <h1>Create account</h1>
+        </CardTitle>
         <CardDescription>Sign up as a student to submit projects.</CardDescription>
       </CardHeader>
       <CardContent>
@@ -113,11 +115,23 @@ export function SignupForm() {
                       {...inputProps}
                       id={`signup-${name}`}
                       aria-invalid={fieldState.invalid}
+                      aria-describedby={
+                        fieldState.invalid
+                          ? `signup-${name}-error`
+                          : description
+                            ? `signup-${name}-description`
+                            : undefined
+                      }
                     />
                     {description && !fieldState.invalid && (
-                      <FieldDescription>{description}</FieldDescription>
+                      <FieldDescription id={`signup-${name}-description`}>
+                        {description}
+                      </FieldDescription>
                     )}
-                    <FieldError errors={[fieldState.error]} />
+                    <FieldError
+                      id={`signup-${name}-error`}
+                      errors={[fieldState.error]}
+                    />
                   </Field>
                 )}
               />

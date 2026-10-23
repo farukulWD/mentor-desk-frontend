@@ -96,11 +96,17 @@ export function TablePagination({
             </PaginationItem>
             {pageWindow(page, totalPages).map((item, index) =>
               item === "ellipsis" ? (
-                <PaginationItem key={`ellipsis-${index}`}>
+                <PaginationItem
+                  key={`ellipsis-${index}`}
+                  className="hidden sm:list-item"
+                >
                   <PaginationEllipsis />
                 </PaginationItem>
               ) : (
-                <PaginationItem key={item}>
+                <PaginationItem
+                  key={item}
+                  className={cn(item !== page && "hidden sm:list-item")}
+                >
                   <PaginationLink
                     isActive={item === page}
                     {...linkProps(item)}
