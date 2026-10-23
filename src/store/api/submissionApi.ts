@@ -6,6 +6,7 @@ import type {
   SubmissionStats,
 } from "@/types";
 import type { ApiMeta } from "@/types/api";
+import type { ReviewValues } from "@/lib/validations/review";
 import type { SubmissionValues } from "@/lib/validations/submission";
 
 import { baseApi } from "./baseApi";
@@ -59,6 +60,17 @@ export const submissionApi = baseApi.injectEndpoints({
       query: () => ({ url: "/submissions/stats" }),
       providesTags: [tagTypes.stats],
     }),
+    reviewSubmission: build.mutation<
+      ReviewSubmission,
+      ReviewValues & { id: string }
+    >({
+      query: ({ id, status, feedback }) => ({
+        url: `/submissions/${id}/review`,
+        method: "PATCH",
+        data: feedback ? { status, feedback } : { status },
+      }),
+      invalidatesTags: [tagTypes.submission, tagTypes.stats],
+    }),
   }),
 });
 
@@ -68,4 +80,5 @@ export const {
   useResubmitSubmissionMutation,
   useGetSubmissionsQuery,
   useGetSubmissionStatsQuery,
+  useReviewSubmissionMutation,
 } = submissionApi;

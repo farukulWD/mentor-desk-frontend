@@ -9,6 +9,7 @@ import {
   type Icon,
 } from "@tabler/icons-react";
 
+import { ReviewDialog } from "@/components/review/review-dialog";
 import { SubmissionDetailsDialog } from "@/components/review/submission-details-dialog";
 import { StatusBadge } from "@/components/submission/status-badge";
 import { Button } from "@/components/ui/button";
@@ -69,7 +70,7 @@ function SkeletonRows({ count }: { count: number }) {
         <Skeleton className="h-4 w-24" />
       </TableCell>
       <TableCell>
-        <Skeleton className="h-7 w-16" />
+        <Skeleton className="h-7 w-48" />
       </TableCell>
     </TableRow>
   ));
@@ -205,7 +206,11 @@ export function SubmissionsTable({
           {formatDate(submission.createdAt)}
         </TableCell>
         <TableCell>
-          <SubmissionDetailsDialog submission={submission} />
+          <div className="flex items-center justify-end gap-1">
+            <SubmissionDetailsDialog submission={submission} />
+            <ReviewDialog submission={submission} decision="APPROVED" />
+            <ReviewDialog submission={submission} decision="REJECTED" />
+          </div>
         </TableCell>
       </TableRow>
     ));
