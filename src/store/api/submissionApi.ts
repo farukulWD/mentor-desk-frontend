@@ -14,8 +14,22 @@ export const submissionApi = baseApi.injectEndpoints({
       query: (data) => ({ url: "/submissions", method: "POST", data }),
       invalidatesTags: [tagTypes.submission],
     }),
+    resubmitSubmission: build.mutation<
+      Submission,
+      SubmissionValues & { id: string }
+    >({
+      query: ({ id, ...data }) => ({
+        url: `/submissions/${id}/resubmit`,
+        method: "PATCH",
+        data,
+      }),
+      invalidatesTags: [tagTypes.submission, tagTypes.stats],
+    }),
   }),
 });
 
-export const { useGetMySubmissionsQuery, useCreateSubmissionMutation } =
-  submissionApi;
+export const {
+  useGetMySubmissionsQuery,
+  useCreateSubmissionMutation,
+  useResubmitSubmissionMutation,
+} = submissionApi;
