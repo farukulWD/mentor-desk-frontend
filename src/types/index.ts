@@ -36,3 +36,8 @@ export type SubmissionStats = {
   approved: number;
   rejected: number;
 };
+
+export type AuthResponse = {
+  user: User;
+  accessToken: string;
+};
